@@ -8,8 +8,12 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 app.post('/', async (req, res) => {
+    if (req.method !== "POST") {
+        return res.status(405).send("Method Not Allowed");
+    }
+
     const body = req.body;
-    
+
     const attachment = body.attachments[0];
     const title = attachment.title;
     const titleLink = attachment.title_link;
@@ -35,6 +39,13 @@ app.post('/', async (req, res) => {
         console.error("Error sending data to external API:", error);
         res.status(500).send('Error forwarding data');
     }
+});
+
+app.get('/health', async (req, res) => {
+    if (req.method !== "GET") {
+        return res.status(405).send("Method Not Allowed");
+    }
+    return res.status(200).send("Healthy");
 });
 
 app.listen(port, () => {

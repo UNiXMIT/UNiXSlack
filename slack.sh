@@ -7,7 +7,7 @@ runOptions=(
 -e SLACK_URL=https://example.com
 --restart always
 -p 8090:3000
---health-cmd "curl -sf http://127.0.0.1:3000 || exit 1"
+--health-cmd "curl -sf http://127.0.0.1:3000/health || exit 1"
 --health-interval 30s
 --health-timeout 10s
 --health-retries 3
