@@ -23,10 +23,8 @@ app.post('/', async (req, res) => {
     const author = authorField ? authorField.value : null;
 
     const postData = {
-        title: title,
-        title_link: titleLink,
-        text: text,
-        author: author
+        content: `${title}\n ${text}\n https://mf.unixmit.uk:8181${titleLink}`,
+        username: author
     };
 
     console.log(postData);
