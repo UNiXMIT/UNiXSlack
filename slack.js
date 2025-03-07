@@ -27,11 +27,8 @@ app.post('/', async (req, res) => {
         username: author
     };
 
-    console.log(postData);
-
     try {
         const response = await axios.post(process.env.SLACK_URL, postData);
-        console.log("Response from Slack API:", response.data);
         res.status(200).send('Webhook received and data forwarded');
     } catch (error) {
         console.error("Error sending data to external API:", error);
